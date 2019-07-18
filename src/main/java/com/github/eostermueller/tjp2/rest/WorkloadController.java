@@ -11,7 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+//import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,7 +51,7 @@ public class WorkloadController implements WebMvcConfigurer {
 	private ResourceLoader resourceLoader;
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	
-
+/*
 	@CrossOrigin(origins = "http://localhost:8090")
 	@RequestMapping(
 		    value = "/execute",
@@ -72,7 +72,7 @@ public class WorkloadController implements WebMvcConfigurer {
 		
 		return apiResponse;
 	}
-
+*/
 	@CrossOrigin(origins = "http://localhost:8090")
 	@RequestMapping(
 		    value = "/workload", 		    		    
@@ -87,16 +87,17 @@ public class WorkloadController implements WebMvcConfigurer {
 		SerializaionUtil util = DefaultFactory.getFactory().createSerializationUtil();
 		
 		LOGGER.debug("input js0n " + js0n );
-		//WorkloadSpecRq rq = util.unmmarshalWorkloadUpdateRq(js0n);
 		UseCases rq = util.unmmarshalUseCases(js0n);
 
 		LOGGER.debug("rq.getProcessingUnits().size(): " + rq.getUseCases().size() );
 		WorkloadBuilder workloadBuilder = DefaultFactory.getFactory().createWorkloadBuilder();
 		
 		Workload w = workloadBuilder.createWorkload(rq);
-		LOGGER.debug("punits" + w.size());
-		
+//		LOGGER.debug("punits" + w.size());
+//		Workload w = DefaultFactory.getFactory().createEmptyWorkload();
+
 		w.setVerboseState(rq);
+		//w.setVerboseState(new UseCases() );
 		LOGGER.debug("PUT#1");
 		
 		DefaultFactory.getFactory().setWorkloadSingleton(w);
@@ -122,17 +123,18 @@ public class WorkloadController implements WebMvcConfigurer {
 		Workload workload = DefaultFactory.getFactory().getWorkloadSingleton();
 		if (workload!=null) {
 			apiResponse.setResult( workload.getVerboseState() );
-			apiResponse.setStatus(Status.SUCCESS);
-			LOGGER.debug("GET#3");
+//			apiResponse.setStatus(Status.SUCCESS);
+//			LOGGER.debug("GET#3");
 		} else {
-			//Perhaps ui has not started, or just not selected anything yet?
-			apiResponse.setStatus(Status.FAILURE);
-			LOGGER.debug("GET#4");
+//			//Perhaps ui has not started, or just not selected anything yet?
+//			apiResponse.setStatus(Status.FAILURE);
+//			LOGGER.debug("GET#4");
 		}
-		LOGGER.debug("GET#END:" + workload.getVerboseState().getClass().getName());
+//		LOGGER.debug("GET#END:" + workload.getVerboseState().getClass().getName());
 		
 		return apiResponse;
 	}
+	/*
 	@CrossOrigin(origins = "http://localhost:8090")
 	@RequestMapping(
 		    value = "/useCases", 		    		    
@@ -148,7 +150,7 @@ public class WorkloadController implements WebMvcConfigurer {
 		
 		return json;
 	}
-	
+	*/
     public static void main(String[] args) throws Exception {
         
 		ApplicationContext ac = SpringApplication.run(WorkloadController.class, args);
