@@ -1,9 +1,8 @@
-package com.github.eostermueller.havoc.workload.model;
+package com.github.eostermueller.gsontest;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.github.eostermueller.havoc.workload.annotations.ProcessingUnit;
 
 public class UseCase  {
 	List<ProcessingUnitImpl> processingUnits = new CopyOnWriteArrayList<ProcessingUnitImpl>();

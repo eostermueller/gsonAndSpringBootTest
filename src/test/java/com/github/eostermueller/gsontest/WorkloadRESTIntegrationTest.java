@@ -1,15 +1,9 @@
-package com.github.eostermueller.tjp2.rest;
+package com.github.eostermueller.gsontest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.Matchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import java.net.URI;
 
@@ -20,11 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -33,7 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @author erikostermueller
  *
  */
-@SpringBootTest(classes = com.github.eostermueller.tjp2.rest.WorkloadController.class)
+@SpringBootTest(classes = com.github.eostermueller.gsontest.WorkloadController.class)
 public class WorkloadRESTIntegrationTest {
 
     @Autowired
@@ -50,7 +40,7 @@ public class WorkloadRESTIntegrationTest {
     	assertTrue(webAppContext.getServletContext() instanceof MockServletContext);
     }
     @Test
-    public void canPutAndGetWorkload() throws Exception {
+    public void canPutAndGetWorkload1111111() throws Exception {
         URI uri = UriComponentsBuilder.fromUriString("/traffic/workload")
         		.build().encode().toUri();
     	System.out.println("putAndGet#2");
@@ -61,6 +51,7 @@ public class WorkloadRESTIntegrationTest {
         				.characterEncoding("UTF-8")
         				.content( putRq() )
         		)
+        .andDo( MockMvcResultHandlers.print() )
         ;
     	
         mockMvc.perform(
@@ -69,6 +60,7 @@ public class WorkloadRESTIntegrationTest {
 	 				.accept(MediaType.APPLICATION_JSON)
 	 				.characterEncoding("UTF-8")
 	 		)
+        .andDo( MockMvcResultHandlers.print() )
         ;
     }
 	private String putRq() {

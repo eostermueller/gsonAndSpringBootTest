@@ -1,9 +1,8 @@
-package com.github.eostermueller.havoc.workload.model;
+package com.github.eostermueller.gsontest;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.github.eostermueller.havoc.workload.HavocException;
 import com.google.gson.annotations.SerializedName;
 
 public class UseCases {

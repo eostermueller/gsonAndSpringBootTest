@@ -1,4 +1,4 @@
-package com.github.eostermueller.havoc.workload.model.json;
+package com.github.eostermueller.gsontest;
 
 import java.lang.reflect.Type;
 

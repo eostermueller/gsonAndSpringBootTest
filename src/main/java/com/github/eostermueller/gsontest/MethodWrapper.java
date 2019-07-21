@@ -1,4 +1,4 @@
-package com.github.eostermueller.havoc.workload.model;
+package com.github.eostermueller.gsontest;
 
 import java.util.List;
 import java.util.Locale;

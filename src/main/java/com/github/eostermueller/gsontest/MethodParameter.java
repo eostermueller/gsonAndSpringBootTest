@@ -1,8 +1,6 @@
-package com.github.eostermueller.havoc.workload.model;
+package com.github.eostermueller.gsontest;
 
 import java.util.Locale;
-
-import com.github.eostermueller.havoc.workload.HavocException;
 
 public class MethodParameter  {
 

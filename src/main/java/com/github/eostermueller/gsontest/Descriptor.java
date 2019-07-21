@@ -1,13 +1,10 @@
-package com.github.eostermueller.havoc.workload.model;
+package com.github.eostermueller.gsontest;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import com.github.eostermueller.havoc.workload.DefaultFactory;
-import com.github.eostermueller.havoc.workload.HavocException;
 
 public class Descriptor {
 
@@ -30,9 +27,6 @@ public class Descriptor {
 	}
 	public void addMessage(Locale locale, String desc) throws HavocException {
 		
-		if (locale==null) {
-			locale = DefaultFactory.getFactory().getDefaultLocale();
-		}
 		Message m = new Message();
 		m.setLocale(locale);
 		m.setMessage(desc);

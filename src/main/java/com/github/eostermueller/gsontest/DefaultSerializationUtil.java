@@ -1,9 +1,6 @@
-package com.github.eostermueller.havoc.workload.model.json;
+package com.github.eostermueller.gsontest;
 
 
-import com.github.eostermueller.havoc.workload.HavocException;
-import com.github.eostermueller.havoc.workload.model.UseCases;
-import com.github.eostermueller.havoc.workload.model.WorkloadSpecRq;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -19,7 +16,7 @@ import com.google.gson.JsonSyntaxException;
  * @author erikostermueller
  *
  */
-public class DefaultSerializationUtil implements SerializaionUtil {
+public class DefaultSerializationUtil  {
 
 	private Gson getGson() {
 		GsonBuilder builder = new GsonBuilder();
@@ -29,12 +26,10 @@ public class DefaultSerializationUtil implements SerializaionUtil {
 	}
 	
 
-	@Override
 	public String marshalUseCases(UseCases useCases) {
 		return getGson().toJson(useCases);
 	}
 
-	@Override
 	public UseCases unmmarshalUseCases(String json) throws HavocException {
 		UseCases useCases 
 		= this.getGson().fromJson(
@@ -45,27 +40,5 @@ public class DefaultSerializationUtil implements SerializaionUtil {
 	}
 
 
-	@Override
-	public WorkloadSpecRq unmmarshalWorkloadUpdateRq(String json) throws JsonSyntaxException, HavocException {
-		
-		String myJs0n = json.trim();
-		
-		
-		if (myJs0n.startsWith("[") && myJs0n.endsWith("]") ) { //String off wrapping square braces
-			myJs0n = myJs0n.substring(1, myJs0n.length()-1 );
-		}
-				
-		WorkloadSpecRq rq 
-		= this.getGson().fromJson(
-			myJs0n,
-			WorkloadSpecRq.class
-				); 
-		return rq;
-	}
 	
-	@Override
-	public String marshalWorkloadSpecRq(WorkloadSpecRq rq) throws JsonSyntaxException, HavocException {
-		return getGson().toJson(rq);
-	}
-
 }

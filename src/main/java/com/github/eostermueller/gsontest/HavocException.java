@@ -1,4 +1,4 @@
-package com.github.eostermueller.havoc.workload;
+package com.github.eostermueller.gsontest;
 
 public class HavocException extends Exception {
 	/**

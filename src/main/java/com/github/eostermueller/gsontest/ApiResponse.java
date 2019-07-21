@@ -1,9 +1,8 @@
-package com.github.eostermueller.havoc.rest;
+package com.github.eostermueller.gsontest;
 
 public class ApiResponse {
 	private long nanoStart = 0L;
 	private long nanoStop = 0L;
-	private int status = 0;
 
 	public long getNanoStart() {
 		return nanoStart;
@@ -19,13 +18,6 @@ public class ApiResponse {
 	}
 	public ApiResponse(long nanoTime) {
 		this.nanoStart = nanoTime;
-	}
-	public int getStatus() {
-		return this.status;
-	}
-	public void setStatus(Status val) {
-		this.setNanoStop(System.nanoTime() );
-		this.status = val.getValue();
 	}
 	public int getMessage() {
 		return message;
